@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="For Saru | Gojo Saturo ">
+    <meta name="github" content="https://github.com/ziddi-shop">
+    <title>For Saru | Gojo Saturo</title>
+    <link rel="website icon" type="png" href="image/gift3.gif">
+    <link rel="stylesheet" href="mail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>For you, Saru!</title>
+</head>
+<body>
+    <div class="warpper preloading">
+        <div class="box">
+            <div class="mail">
+                <div class="heart">
+                    <img src="image/heart.png" alt="">
+                    <img src="image/heart.png" alt="">
+                    <img src="image/heart.png" alt="">
+                    <img src="image/heart.png" alt="">
+                    <img src="image/heart.png" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">
+                        <h2>For you, Saru!</h2>
+                    </div>
+                    <p>
+                        Ek saal ho gaya, tumhare saath bitaye hue;<br>
+                        Har pal, har din, har lamha yaadgar raha hai
+                        <br><br>
+                        It's been one year since we've been together;<br>
+                        Every moment, every day, every second has been memorable.
+                        <br><br>
+                        This past year with you has been the most beautiful journey of my life. From our first date to today, every moment has been filled with love, laughter, and countless memories. You've made my world brighter, my days happier, and my heart fuller. Thank you for being you, for loving me, and for making this year absolutely perfect.
+                        <br><br>
+                        Here's to many more years of love, laughter, and beautiful moments together. Happy 1st Anniversary, my love! ❤️
+                    </p>
+                    <div class="gifs_left">
+                        <img id="heart__letter" src="https://media.giphy.com/media/YKUvclrGYmDKXwtphf/giphy.gif" alt="" class="animationOp">
+                    </div>
+                    <div class="gifs_right">
+                        <img id="heart__letter" src="https://media.giphy.com/media/YKUvclrGYmDKXwtphf/giphy.gif" alt="" class="animationOp">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loader-wrapper">
+            <div class="loader">
+                <div class="inner one" style="--i:1;"></div>
+                <div class="inner two" style="--i:1;"></div>
+                <div class="inner three" style="--i:1;"></div>
+                <div class="box-heart">
+                    <div class="heartLoader"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="copy">
+		<p class="text-center text-white text-sm">Created with love by <a
+			href="#">Gojo Saturo</a> for Saru</p>
+	  </div>
+    
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script>
+        $(window).on('load', function(event){
+        $('body').removeClass('preloading');
+        $('.loader-wrapper').delay(1000).fadeOut('fast');
+    });
+    </script>
+</html>
+    <!-- Music Activation Overlay -->
+    <div id="musicOverlay" class="music-overlay hidden">
+        <div class="music-overlay-content">
+            <div class="music-overlay-icon">
+                <i class="fa-solid fa-music"></i>
+            </div>
+            <h3>Activate Romantic Music</h3>
+            <p>Touch to listen to a sweet melody during reading 🎵</p>
+            <button id="enableMusicBtn" class="enable-music-btn">
+                <i class="fa-solid fa-heart"></i> Activate Music
+            </button>
+        </div>
+    </div>
+    
+    <!-- Music Player Button with Cute Arrow -->
+    <div class="music-container">
+        <div class="music-arrow">
+            <div class="arrow-line"></div>
+            <div class="arrow-head"></div>
+        </div>
+        <div class="music-label">
+            <span>Play a sweet background music 🎵</span>
+        </div>
+        <div class="music-btn" id="musicBtn">
+            <i class="fa-solid fa-pause"></i>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script>
+        // Music Player with Auto-play
+        const audio = new Audio('my.mp3');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicOverlay = document.getElementById('musicOverlay');
+        const enableMusicBtn = document.getElementById('enableMusicBtn');
+        let isPlaying = false; // Start as not playing
+        let userInteracted = false;
+        
+        // Set audio properties for better experience
+        audio.loop = true; // Loop the music
+        audio.volume = 0.7; // Set volume to 70%
+        
+        // Auto-play music when page loads
+        $(window).on('load', function(){
+            $('body').removeClass('preloading');
+            $('.loader-wrapper').delay(1000).fadeOut('fast');
+            
+            // Start playing music after loader disappears with user interaction fallback
+            setTimeout(() => {
+                // Try to play with user gesture detection
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Success! Music is playing
+                        isPlaying = true;
+                        userInteracted = true;
+                        musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                        musicBtn.style.background = 'linear-gradient(135deg, #ff1493, #dc143c)';
+                    }).catch(error => {
+                        console.log('Auto-play was prevented:', error);
+                        // Show music activation overlay
+                        musicOverlay.classList.remove('hidden');
+                        isPlaying = false;
+                        musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                        musicBtn.style.background = 'linear-gradient(135deg, #ff69b4, #ff1493)';
+                    });
+                }
+            }, 1200);
+        });
+        
+        // Handle music activation button
+        enableMusicBtn.addEventListener('click', () => {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isPlaying = true;
+                    userInteracted = true;
+                    musicOverlay.classList.add('hidden');
+                    musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    musicBtn.style.background = 'linear-gradient(135deg, #ff1493, #dc143c)';
+                }).catch(() => {
+                    // Still failed, but hide overlay anyway
+                    musicOverlay.classList.add('hidden');
+                });
+            }
+        });
+
+        musicBtn.addEventListener('click', () => {
+            if (!userInteracted) {
+                // First interaction, show overlay if music hasn't started
+                musicOverlay.classList.remove('hidden');
+                return;
+            }
+            
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                audio.play();
+                musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                musicBtn.style.background = 'linear-gradient(135deg, #ff1493, #dc143c)';
+            } else {
+                audio.pause();
+                musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                musicBtn.style.background = 'linear-gradient(135deg, #ff69b4, #ff1493)';
+            }
+        });
+        
+        // Fallback for any remaining user interactions
+        document.addEventListener('click', function() {
+            if (!userInteracted && !isPlaying) {
+                musicOverlay.classList.remove('hidden');
+            }
+        }, { once: true });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+</body>
+</html>
